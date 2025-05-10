@@ -7,7 +7,7 @@ pub fn build(b: *std.Build) !void {
 
     // --- configure the project executable ---
     const exe = b.addExecutable(.{
-        .name = "my_project_name",
+        .name = "myapp",
         .target = target,
         .optimize = optimize,
     });
@@ -26,13 +26,13 @@ pub fn build(b: *std.Build) !void {
 
     // project artifact
     b.installArtifact(exe);
-    const exe_step = b.step("my_project_name", "Build my_project_name");
+    const exe_step = b.step("myapp", "Build myapp");
     const install_exe = b.addInstallArtifact(exe, .{});
     exe_step.dependOn(&install_exe.step);
 
     // --- configure the test executable ---
     const tests = b.addExecutable(.{
-        .name = "my_project_name_tests",
+        .name = "mylib_tests",
         .target = target,
         .optimize = optimize,
     });
@@ -59,7 +59,7 @@ pub fn build(b: *std.Build) !void {
 
     // test artifact
     b.installArtifact(tests);
-    const tests_step = b.step("my_project_name_tests", "Build my_project_name");
+    const tests_step = b.step("mylib_tests", "Build myapp");
     const install_tests = b.addInstallArtifact(tests, .{});
     tests_step.dependOn(&install_tests.step);
 

@@ -1,14 +1,14 @@
 #include <iostream>
-#include <mylib.h>
+#include <memory>
+
+#include "mylib.h"
 
 int main() {
-	std::cout << "hello there\n";
+  std::cout << "hello there\n";
 
-	Mylib* myobj = new Mylib(10);
+  auto myobj = std::make_unique<Mylib>(10);
 
-	std::cout << "my number is: " << myobj->mylibMethod() << std::endl;
+  std::cout << "my number is: " << myobj->mylibMethod() << std::endl;
 
-	delete myobj;
-
-	return 0;
+  return 0;
 }
